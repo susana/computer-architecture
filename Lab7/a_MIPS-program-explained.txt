@@ -1,0 +1,135 @@
+Susana C Delgadillo
+12/12/11
+Lab 7 - Finale
+
+----------------------------------------
+
+## instruc num ##
+<instruction>
+<field names>
+<binary bits>
+<hex equivalent>
+
+  <Explanation of instruction>
+
+-----------------------------------------
+
+## 0 ##
+sw
+op     rs    rt    imm
+101011 00000 00001 0000000000000001
+AC010001
+
+  Explanation:
+  effective addr = 1 + value stored in reg 0.
+  eff addr = 1 (dec, 1 hex)
+  Value in reg 1 stored at eff addr.
+    Data mem (01 hex) - 0 (dec, 0 hex)
+    
+## 1 ##
+lw $reg3, 6($reg1)
+op     rs    rt    imm
+100011 00001 00011 0000000000000110
+8C230006
+
+  Explanation: 
+  effective addr = 6 + value stored in reg 1.
+  eff addr = 6 (dec, 6 hex)
+  Value at eff addr stored in reg 3.
+    r0 - 00000000
+    r1 - 00000000
+    r2 - 00000000
+    r3 - 00000007 (dec 7)
+
+## 2 ##
+lw $reg0, 9($reg3)
+op     rs    rt    imm
+100011 00011 00001 0000000000001001
+8C610009
+
+  Explanation:
+  effective addr = 9 + value stored in reg 3.
+  eff addr = 16 (dec, 10 hex)
+  Value at eff addr stored in reg 1.
+    r0 - 00000000
+    r1 - 00101010 (dec 42)
+    r2 - 00000000
+    r3 - 00000007 (dec 7)
+
+## 3 ##
+sub rd, rs, rt
+op     rs    rt    rd    shamt funct
+000000 00001 00011 00010 00000 100010
+231022
+
+  Explanation:
+  result = val at reg 1 - val at reg 3
+  result stored in reg 2.
+    r0 - 00000000
+    r1 - 00101010 (dec 42)
+    r2 - 100011 (dec 35)
+    r3 - 00000007 (dec 7)
+    
+## 4 ##
+beq rs, rt, disp
+op     rs    rt    imm
+000100 00001 00010 0000000000000010
+10220002
+
+  Explanation: 
+If reg1==reg 2, then go to the 2nd
+  instruc after this one.
+  (Will not branch).
+  
+## 5 ##
+slt rd, rs, rt
+op     rs    rt    rd    shamt funct
+000000 00001 00011 00010 00000 101010
+23102A
+
+  Explanation: If reg1 < reg3,
+  then reg2 = 1, else reg2 = 0.  
+    r0 - 00000000
+    r1 - 00101010 (dec 42)
+    r2 - 0 (dec 0)
+    r3 - 00000007 (dec 7)
+    
+## 6 ##
+lw $reg0, 9($reg3)
+op     rs    rt    imm
+100011 00011 00010 0000000000001001
+8C620009
+
+  Explanation:
+  effective addr = 9 + value stored in reg 3.
+  eff addr = 16 (dec, 10 hex)
+  Value at eff addr stored in reg 2.
+    r0 - 00000000
+    r1 - 00101010 (dec 42)
+    r2 - 00101010 (dec 42)
+    r3 - 00000007 (dec 7)
+  
+## 7 ##
+beq rs, rt, disp
+op     rs    rt    imm
+000100 00001 00010 0000000000000010
+10220002
+
+  Explanation: 
+  If reg1==reg 2, then go to the 2nd
+  instruc after the following one.
+  (Will branch).
+  
+## 9 ##
+add rd, rs, rt
+op     rs    rt    rd    shamt funct
+000000 00001 00010 00011 00000 100000
+221820
+
+  Explanation:
+  result = val at reg 1 + val at reg 2
+  result stored in reg 3.
+    r0 - 00000000
+    r1 - 00101010 (dec 42)
+    r2 - 00101010 (dec 42)
+    r3 - 00000007 (dec 7)
